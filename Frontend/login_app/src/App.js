@@ -8,16 +8,12 @@ const App = () => {
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <LoginForm onSubmit={({ login, password }) => console.log({ login, password })} />
-=======
       <LoginForm onSubmit={({ login, password }) => {
         setLoginAttempts((prevAttempts) => [
           ...prevAttempts,
           { login, password, timestamp: new Date().toISOString() },
         ]);
       }} />
->>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
       <LoginAttemptList attempts={loginAttempts} />
     </div>
   );

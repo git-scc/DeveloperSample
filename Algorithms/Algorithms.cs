@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-using System;
-
-namespace DeveloperSample.Algorithms
-{
-    public static class Algorithms
-    {
-        public static int GetFactorial(int n) => throw new NotImplementedException();
-
-        public static string FormatSeparators(params string[] items) => throw new NotImplementedException();
-    }
-=======
 using System;
 using System.Linq;
 
@@ -17,8 +5,6 @@ namespace DeveloperSample.Algorithms
 {
     public static class Algorithms
     {
-        //public static int GetFactorial(int n) => throw new NotImplementedException();
-        
         // Calculates factorial of n (n!)
         public static int GetFactorial(int n)
         {
@@ -28,8 +14,6 @@ namespace DeveloperSample.Algorithms
                 result *= i;
             return result;
         }
-
-        //public static string FormatSeparators(params string[] items) => throw new NotImplementedException();
 
         // Formats array of strings: "a", "b", "c" => "a, b and c"
         public static string FormatSeparators(params string[] items)
@@ -43,5 +27,4 @@ namespace DeveloperSample.Algorithms
             return $"{string.Join(", ", allButLast)} and {last}";
         }
     }
->>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
 }

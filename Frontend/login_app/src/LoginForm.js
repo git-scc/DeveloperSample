@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import './LoginForm.css';
-
-const LoginForm = (props) => {
-	const handleSubmit = (event) =>{
-		event.preventDefault();
-
-		props.onSubmit({
-			login: undefined,
-			password: undefined,
-=======
 import React, { useState } from "react";
 import './LoginForm.css';
 
@@ -21,22 +9,12 @@ const LoginForm = (props) => {
 		event.preventDefault();
 
 		props.onSubmit({
-			login: login, //previously undefined
-			password: password, //previously undefined
->>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
+			login: login,
+			password: password,
 		});
 	}
 
 	return (
-<<<<<<< HEAD
-		<form className="form">
-			<h1>Login</h1>
-			<label htmlFor="name">Name</label>
-			<input type="text" id="name" />
-			<label htmlFor="password">Password</label>
-			<input type="password" id="password" />
-			<button type="submit" onClick={handleSubmit}>Continue</button>
-=======
 		<form className="form" onSubmit={handleSubmit}>
 			<h1>Login</h1>
 			<label htmlFor="name">Name</label>
@@ -54,7 +32,6 @@ const LoginForm = (props) => {
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<button type="submit">Continue</button>
->>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
 		</form>
 	)
 }

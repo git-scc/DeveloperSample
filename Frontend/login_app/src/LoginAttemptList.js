@@ -1,23 +1,8 @@
-<<<<<<< HEAD
-import React from "react";
-=======
 import React, { useState } from "react";
->>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
 import "./LoginAttemptList.css";
 
 const LoginAttempt = (props) => <li {...props}>{props.children}</li>;
 
-<<<<<<< HEAD
-const LoginAttemptList = (props) => (
-	<div className="Attempt-List-Main">
-	 	<p>Recent activity</p>
-	  	<input type="input" placeholder="Filter..." />
-		<ul className="Attempt-List">
-			<LoginAttempt>TODO</LoginAttempt>
-		</ul>
-	</div>
-);
-=======
 const LoginAttemptList = (props) => {
 	const [filter, setFilter] = useState("");
 
@@ -51,6 +36,5 @@ const LoginAttemptList = (props) => {
 		</div>
 	);
 };
->>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
 
 export default LoginAttemptList;
