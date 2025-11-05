@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Xunit;
 
 namespace DeveloperSample.Container
@@ -21,4 +22,30 @@ namespace DeveloperSample.Container
             Assert.IsType<ContainerTestClass>(testInstance);
         }
     }
+=======
+using Xunit;
+using Xunit;
+
+namespace DeveloperSample.Container
+{
+    internal interface IContainerTestInterface
+    {
+    }
+
+    internal class ContainerTestClass : IContainerTestInterface
+    {
+    }
+
+    public class ContainerTest
+    {
+        [Fact]//(Skip="Not implemented")
+        public void CanBindAndGetService()
+        {
+            var container = new Container();
+            container.Bind(typeof(IContainerTestInterface), typeof(ContainerTestClass));
+            var testInstance = container.Get<IContainerTestInterface>();
+            Assert.IsType<ContainerTestClass>(testInstance);
+        }
+    }
+>>>>>>> 25d79f0 (Completed DeveloperSample assessment: frontend and backend)
 }
