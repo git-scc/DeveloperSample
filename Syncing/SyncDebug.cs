@@ -26,29 +26,44 @@ namespace DeveloperSample.Syncing
             // Ensure per-key initialization happens ONCE using Lazy<T>
             var concurrentDictionary = new ConcurrentDictionary<int, Lazy<string>>();
 
-            var threads = Enumerable.Range(0, 3)
-                .Select(_ => new Thread(() =>
-                {
-                    foreach (var key in itemsToInitialize)
-                    {
-                        var lazy = concurrentDictionary.GetOrAdd(
-                            key,
-                            k => new Lazy<string>(() => getItem(k), LazyThreadSafetyMode.ExecutionAndPublication)
-                        );
-                        // Force value creation
-                        var _unused = lazy.Value;
-                    }
-                }))
-                .ToList();
+            //var threads = Enumerable.Range(0, 3)
+            //    .Select(_ => new Thread(() =>
+            //    {
+            //        foreach (var key in itemsToInitialize)
+            //        {
+            //            var lazy = concurrentDictionary.GetOrAdd(
+            //                key,
+            //                k => new Lazy<string>(() => getItem(k), LazyThreadSafetyMode.ExecutionAndPublication)
+            //            );
+            //            // Force value creation
+            //            var _unused = lazy.Value;
+            //        }
+            //    }))
+            //    .ToList();            
 
-            foreach (var thread in threads)
+            //No manual Join or thread management.
+            //foreach (var thread in threads)
+            //{
+            //    thread.Start();
+            //}
+            //foreach (var thread in threads)
+            //{
+            //    thread.Join();
+            //}
+
+            //Uses Parallel.ForEach instead of manually creating Threads. Automatically scales with available cores.
+            // Parallelize over all items
+            Parallel.ForEach(itemsToInitialize, key =>
             {
-                thread.Start();
-            }
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
+                // GetOrAdd ensures each key has a Lazy<string> created exactly once
+                var lazy = concurrentDictionary.GetOrAdd(
+                    key,
+                    k => new Lazy<string>(() => getItem(k), LazyThreadSafetyMode.ExecutionAndPublication)
+                );
+
+                // Force value creation
+                var _ = lazy.Value;
+            });
 
             return concurrentDictionary.ToDictionary(kv => kv.Key, kv => kv.Value.Value);
         }
